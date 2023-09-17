@@ -1,13 +1,13 @@
-import {Config} from "drizzle-kit";
-import * as dotenv from "dotenv";
+import { Config } from "drizzle-kit"
+import * as dotenv from "dotenv"
 
-dotenv.config();
+dotenv.config()
 
 export default {
-    schema: "./src/db/schema.ts",
+    schema: "./src/db/schema/",
     out: "./src/db/migrations/",
-    driver: 'pg',
+    driver: "pg",
     dbCredentials: {
         connectionString: process.env.CONNECTION_STRING || "",
-    }
-} satisfies Config;
+    },
+} satisfies Config
