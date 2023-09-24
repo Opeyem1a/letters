@@ -30,7 +30,7 @@ export const letters = pgTable("letters", {
 export const lettersRelations = relations(
     letters as RefTable,
     ({ one, many }) => ({
-        lettersToTags: many(lettersToTags),
+        tags: many(lettersToTags),
         country: one(countries, {
             fields: [letters.countryId],
             references: [countries.id],
@@ -45,7 +45,7 @@ export const tags = pgTable("tags", {
 })
 
 export const tagsRelations = relations(tags as RefTable, ({ many }) => ({
-    lettersToTags: many(lettersToTags),
+    letters: many(lettersToTags),
 }))
 
 //@ts-ignore
