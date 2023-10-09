@@ -13,7 +13,6 @@ import { AnyTable, relations, sql } from "drizzle-orm"
 
 type RefTable = AnyTable<{ name: string }>
 
-//@ts-ignore
 export const letters = pgTable("letters", {
     id: serial("id").primaryKey(),
     uuid: uuid("uuid").notNull().unique().defaultRandom(),
@@ -24,7 +23,9 @@ export const letters = pgTable("letters", {
     authorAge: integer("author_age").notNull(),
     content: text("content").notNull(),
     mediaConsent: boolean("media_consent").notNull().default(false),
-    countryId: integer("country_id").notNull(),
+    countryId: integer("country_id")
+        .notNull()
+        .references(() => countries.id),
 })
 
 export const lettersRelations = relations(
@@ -38,7 +39,6 @@ export const lettersRelations = relations(
     })
 )
 
-//@ts-ignore
 export const tags = pgTable("tags", {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
@@ -48,7 +48,6 @@ export const tagsRelations = relations(tags as RefTable, ({ many }) => ({
     letters: many(lettersToTags),
 }))
 
-//@ts-ignore
 export const countries = pgTable("countries", {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
@@ -63,7 +62,6 @@ export const countriesRelations = relations(
 )
 
 // Many-to-many: Letters <-> Tags
-//@ts-ignore
 export const lettersToTags = pgTable(
     "letters_to_tags",
     {

@@ -13,6 +13,7 @@
     "server": "docker compose up -d",
     "server-logs": "docker compose logs -f db",
     "makemigrations": "yarn drizzle-kit generate:pg --config=./src/db/drizzle.config.ts",
+    "migrate": "ts-node src/db/migrate.ts",
     "push": "yarn drizzle-kit push:pg --config=./src/db/drizzle.config.ts",
     "studio": "yarn drizzle-kit studio --port 3100 --verbose --config=./src/db/drizzle.config.ts"
   },
@@ -35,6 +36,7 @@
     "@types/pg": "^8.10.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "drizzle-kit": "^0.19.13",
-    "prettier": "3.0.3"
+    "prettier": "3.0.3",
+    "ts-node": "^10.9.1"
   }
 }
