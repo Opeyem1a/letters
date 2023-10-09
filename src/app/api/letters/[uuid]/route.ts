@@ -2,20 +2,21 @@ import { NextResponse } from "next/server"
 import { db } from "@/db"
 import { eq } from "drizzle-orm"
 import { letters } from "@db/schema"
-import { MaybeLetter, NewLetter } from "@db/schema/types"
+import { MaybeLetter } from "@db/schema/types"
 import { DrizzleErrors, errorResponse } from "@/utils/api"
 
-export const GET = async (request: Request) => {
-    const { searchParams } = new URL(request.url)
-    const uuid = searchParams.get("uuid")
+type ViewLetterParams = { params: { uuid: string } }
 
-    if (uuid === null) {
-        return errorResponse(404, "No letter UUID provided.")
-    }
+export const GET = async (request: Request, { params }: ViewLetterParams) => {
+    const uuid = params.uuid
 
     try {
+        //@ts-expect-error
         const letter: MaybeLetter = await db.query["letters"].findFirst({
             where: eq(letters.uuid, uuid),
+            columns: {
+                countryId: false,
+            },
             with: {
                 tags: {
                     columns: {
@@ -31,7 +32,12 @@ export const GET = async (request: Request) => {
                         },
                     },
                 },
-                country: true,
+                country: {
+                    columns: {
+                        name: true,
+                        code: true,
+                    },
+                },
             },
         })
         if (!letter) {
@@ -42,34 +48,13 @@ export const GET = async (request: Request) => {
         }
         return NextResponse.json(letter)
     } catch (e) {
+        //@ts-expect-error
         if (e.code === DrizzleErrors.BAD_UUID) {
             return errorResponse(500, "Malformed UUID.")
         }
         return errorResponse(
             500,
             "Unknown error occurred. Please try again later."
-        )
-    }
-}
-
-export const POST = async (request: Request) => {
-    const body = await request.json()
-
-    if (!body) {
-        return errorResponse(404, "No letter data provided.")
-    }
-
-    try {
-        // todo: add validation for form data
-        //@ts-expect-error
-        const letter: MaybeLetter = await db
-            .insert(letters)
-            .values(body as NewLetter)
-        return NextResponse.json(letter)
-    } catch (e) {
-        return errorResponse(
-            500,
-            "Unknown error occurred. Please try again later." + e
         )
     }
 }

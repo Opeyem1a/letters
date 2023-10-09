@@ -10,4 +10,8 @@ export default {
     dbCredentials: {
         connectionString: process.env.CONNECTION_STRING || "",
     },
+    // Print all statements
+    verbose: true,
+    // Always ask for my confirmation
+    strict: true,
 } satisfies Config

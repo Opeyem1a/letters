@@ -29,6 +29,12 @@ CREATE TABLE IF NOT EXISTS "tags" (
 );
 --> statement-breakpoint
 DO $$ BEGIN
+ ALTER TABLE "letters" ADD CONSTRAINT "letters_country_id_countries_id_fk" FOREIGN KEY ("country_id") REFERENCES "countries"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
  ALTER TABLE "letters_to_tags" ADD CONSTRAINT "letters_to_tags_letter_id_letters_id_fk" FOREIGN KEY ("letter_id") REFERENCES "letters"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;

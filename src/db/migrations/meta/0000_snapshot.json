@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "33ad8f2e-db1d-4ef5-ab80-00c0d030bb52",
+  "id": "c9e0877e-6b3b-40db-bc2b-716fe76854f7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "countries": {
@@ -97,7 +97,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "letters_country_id_countries_id_fk": {
+          "name": "letters_country_id_countries_id_fk",
+          "tableFrom": "letters",
+          "tableTo": "countries",
+          "columnsFrom": [
+            "country_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "letters_uuid_unique": {
