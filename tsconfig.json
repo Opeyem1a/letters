@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,8 +24,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@db/*": ["./src/db/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@db/*": [
+        "./src/db/*"
+      ]
     }
   },
   "ts-node": {
@@ -30,6 +38,14 @@
     // Tell ts-node CLI to install the --loader automatically
     "esm": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next/types/**/*.ts"
+  ]
 }

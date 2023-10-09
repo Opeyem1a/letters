@@ -2,9 +2,7 @@ import { DetailedLetter } from "@db/schema/types"
 import { useFetch } from "@/hooks/useFetch"
 
 export const ViewLetter = async ({ params }: { params: { uuid: string } }) => {
-    const { data, error } = await useFetch(
-        `http://localhost:3000/api/letters/${params.uuid}`
-    )
+    const { data, error } = await useFetch(`api/letters/${params.uuid}`)
 
     if (error) {
         return <p>{error}</p>
@@ -25,7 +23,7 @@ export const ViewLetter = async ({ params }: { params: { uuid: string } }) => {
             <ul>
                 Tags:
                 {letter.tags.map((tag, index) => {
-                    return <li key={index}>{tag.tag.name}</li>
+                    return <li key={index}>{tag.name}</li>
                 })}
             </ul>
         </main>

@@ -1,5 +1,5 @@
 import { DrizzleErrors, errorResponse } from "@/utils/api"
-import { Letter, LetterLite, NewLetter } from "@db/schema/types"
+import { LetterLite, NewLetter } from "@db/schema/types"
 import { db } from "@/db"
 import { NextResponse } from "next/server"
 import { insertLetter } from "@/app/api/_helpers/insert"
@@ -8,7 +8,7 @@ import { cleanLetter } from "@/app/api/_helpers/clean"
 export const GET = async () => {
     try {
         //@ts-expect-error
-        const _letters: Letter[] = await db.query["letters"].findMany({
+        const _letters: LetterLite[] = await db.query["letters"].findMany({
             columns: {
                 mediaConsent: false,
                 content: false,
@@ -33,7 +33,7 @@ export const GET = async () => {
         })
         const letters: LetterLite[] = _letters.map(letter => ({
             ...letter,
-            url: `/letter/${letter.uuid}`,
+            url: `/letters/${letter.uuid}`,
         }))
         return NextResponse.json(letters)
     } catch (e) {
