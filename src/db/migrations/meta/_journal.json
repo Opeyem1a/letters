@@ -1,13 +1,13 @@
 {
-  "version": "5",
-  "dialect": "pg",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1696835363551,
-      "tag": "0000_smiling_oracle",
-      "breakpoints": true
-    }
-  ]
+    "version": "5",
+    "dialect": "pg",
+    "entries": [
+        {
+            "idx": 0,
+            "version": "5",
+            "when": 1696835363551,
+            "tag": "0000_smiling_oracle",
+            "breakpoints": true
+        }
+    ]
 }
