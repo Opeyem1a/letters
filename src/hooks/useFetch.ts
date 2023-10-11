@@ -3,7 +3,8 @@ import * as dotenv from "dotenv"
 dotenv.config()
 
 export const useFetch = async (endpoint: string) => {
-    const res = await fetch(`${process.env.HOST}/${endpoint}`, {
+    console.log("FETCH", `${process.env.NEXT_PUBLIC_HOST}/${endpoint}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/${endpoint}`, {
         next: { revalidate: 3600 },
     })
     let data
