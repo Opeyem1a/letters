@@ -1,6 +1,5 @@
 import { LetterLite } from "@db/schema/types"
 import { useFetch } from "@/hooks/useFetch"
-import { getLetterLink } from "@/app/_util/letter"
 import Link from "next/link"
 
 export const ViewAllLetters = async () => {
