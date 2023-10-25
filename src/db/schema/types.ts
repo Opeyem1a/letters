@@ -7,18 +7,18 @@ export type MaybeLetter = typeof letters.$inferSelect | undefined
 
 export type NewLetter = Omit<
     typeof letters.$inferInsert,
-    "id" | "uuid" | "submittedAt"
+    "id" | "uuid" | "submittedAt" | "approved" | "published"
 > & { tagIds?: number[] }
 
 export type LetterLite = Omit<
     Letter,
-    "mediaConsent" | "authorAge" | "content"
+    "mediaConsent" | "authorAge" | "content" | "approved"
 > & {
     url: string
     tags: Tag[]
 }
 
-export type DetailedLetter = Omit<Letter, "countryId"> & {
+export type DetailedLetter = Omit<Letter, "countryId" | "approved"> & {
     country: Country
     tags: Tag[]
 }

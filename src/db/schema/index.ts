@@ -23,6 +23,8 @@ export const letters = pgTable("letters", {
     authorAge: integer("author_age").notNull(),
     content: text("content").notNull(),
     mediaConsent: boolean("media_consent").notNull().default(false),
+    approved: boolean("approved").notNull().default(false),
+    published: boolean("published").notNull().default(false),
     countryId: integer("country_id")
         .notNull()
         .references(() => countries.id),
