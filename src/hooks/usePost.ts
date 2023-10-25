@@ -15,6 +15,7 @@ export const usePost = ({ endpoint }: PostParams) => {
                 {
                     method: "POST",
                     body,
+                    // @ts-expect-error
                     next: { revalidate: null },
                 }
             )
