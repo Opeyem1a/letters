@@ -1,0 +1,32 @@
+span.text {
+    &[data-text-variant="titleLarge"] {
+        font-size: 5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    &[data-text-variant="titleSoft"] {
+        font-size: 5rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &[data-text-variant="emphasis"] {
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &[data-text-variant="medium"] {
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    &[data-text-variant="regular"] {
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
