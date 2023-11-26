@@ -1,0 +1,16 @@
+nav.nav {
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        padding: 2.5rem 6rem;
+
+        span[data-right] {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+        }
+    }
+}
