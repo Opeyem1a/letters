@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn migrate && next dev",
-    "build": "next build",
+    "build": "yarn migrate && next build",
     "start": "next start",
     "lint": "next lint && yarn tsc",
     "pretty": "yarn prettier src/ --write",
