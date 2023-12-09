@@ -3,54 +3,149 @@ section.landingSection {
     flex-direction: column;
     justify-content: space-between;
     min-height: inherit;
-    padding-top: 10rem;
-    padding-bottom: 4rem;
-}
+    padding: 11rem 3rem 4rem 3rem;
 
-span.questionTextWrapper {
-    transition: opacity 1s ease-in-out;
-    opacity: 1;
-    &[data-faded="true"] {
-        opacity: 0.25;
-    }
-}
-
-div.questionResponseWrapper {
-    display: flex;
-    gap: 2rem;
-}
-
-button.shareMoreButton {
-    all: unset;
-    opacity: 0;
-    transition: opacity 500ms ease-in;
-
-    &[data-show="true"] {
+    span.questionTextWrapper {
+        transition: opacity 1s ease-in-out;
         opacity: 1;
+        &[data-faded="true"] {
+            opacity: 0.25;
+        }
+    }
+
+    div.questionResponseWrapper {
+        display: flex;
+        gap: 2rem;
+    }
+
+    button.shareMoreButton {
+        all: unset;
+        opacity: 0;
+        transition: opacity 500ms ease-in;
+
+        &[data-show="true"] {
+            opacity: 1;
+        }
+    }
+
+    div.pseudoForm {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        input[type="text"].inputInText {
+            width: min(15ch, 50dvw);
+            background: none;
+            outline: 0;
+            color: inherit;
+            border-bottom-color: var(--color-dark);
+            border-width: 0 0 0.25rem;
+
+            // inherit everything set by [data-text-variant]
+            font-size: inherit;
+            font-style: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            font-family: inherit;
+        }
+    }
+
+    button.revealMoreButton {
+        all: unset;
+        transition: padding-left 500ms ease-in;
+
+        &::before {
+            content: "-> ";
+            opacity: 0;
+            margin-left: -1rem;
+            transition: opacity 500ms ease-in;
+        }
+
+        &:hover {
+            &::before {
+                opacity: 1;
+            }
+            cursor: pointer;
+            padding-left: 1rem;
+        }
     }
 }
 
-div.pseudoForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+section.contentSection {
+    padding: 6rem;
+    min-height: 100dvh;
 
-    input[type="text"].inputInText {
-        width: 15ch;
-        background: none;
-        outline: 0;
-        border-bottom-color: inherit;
-        border-width: 0 0 0.25rem;
+    div.wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 6rem 2rem;
 
-        // inherit everything set by [data-text-variant]
-        font-size: inherit;
-        font-style: inherit;
-        font-weight: inherit;
-        line-height: inherit;
-        font-family: inherit;
+        div.row {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+
+            div.half {
+                max-width: 50%;
+                flex: 1;
+
+                &[data-centered] {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                div.notePreview {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    [data-faded] {
+                        opacity: 0.5;
+                    }
+
+                    div.header {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0;
+                    }
+
+                    div.content {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    div.footer {
+                        display: flex;
+                    }
+                }
+
+                button.callToAction {
+                    all: unset;
+                    transition:
+                        color 250ms ease-in-out,
+                        background-color 250ms ease-in-out;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    background-color: var(--color-dark);
+                    color: var(--color-light);
+                    border: 0.25rem solid var(--color-dark);
+                    border-radius: 4rem 4rem 4rem 1rem;
+                    width: 80%;
+                    height: 14rem;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: var(--color-light);
+                        color: var(--color-dark);
+                    }
+                }
+            }
+        }
     }
-}
-
-button.revealMoreButton {
-    all: unset;
 }

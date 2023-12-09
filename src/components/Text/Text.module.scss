@@ -6,7 +6,13 @@ span.text {
         line-height: normal;
     }
     &[data-text-variant="titleSoft"] {
-        font-size: 5rem;
+        font-size: 4rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &[data-text-variant="titleSmall"] {
+        font-size: 3rem;
         font-style: normal;
         font-weight: 600;
         line-height: normal;

@@ -4,10 +4,13 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import styles from "@/app/_home/home-page.module.scss"
 import Text from "@/components/Text"
 
-const LandingSection = () => {
+const LandingSection = ({ ...props }) => {
     const revealMore = useCallback(() => {
-        // todo: finish scroll to content motion
-        console.log("FINISH")
+        const section = document.getElementById('section-content');
+        console.log(section)
+        if (section) {
+            section.scrollIntoView({behavior: 'smooth', block: "start"});
+        }
     }, [])
 
     const questionText = useMemo(() => {
@@ -20,7 +23,7 @@ const LandingSection = () => {
     useEffect(() => {}, [])
 
     return (
-        <section className={styles.landingSection}>
+        <section className={styles.landingSection} {...props}>
             <div className={styles.pseudoForm}>
                 <span
                     className={styles.questionTextWrapper}
@@ -29,7 +32,7 @@ const LandingSection = () => {
                     <Text variant="titleLarge">{questionText}</Text>
                 </span>
                 <div className={styles.questionResponseWrapper}>
-                    <Text variant="titleSoft">
+                    <Text variant="titleLarge">
                         <input
                             type="text"
                             className={styles.inputInText}
@@ -53,7 +56,7 @@ const LandingSection = () => {
                     className={styles.revealMoreButton}
                     onClick={revealMore}
                 >
-                    <Text variant="regular">Wait, there&apos;s more ↓</Text>
+                    <Text variant="regular">Wait, there&apos;s more&nbsp;&nbsp;👀</Text>
                 </button>
             </div>
         </section>
