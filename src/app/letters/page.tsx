@@ -1,9 +1,9 @@
 import { LetterLite } from "@db/schema/types"
-import { useFetch } from "@/hooks/useFetch"
 import Link from "next/link"
+import { serverFetchData } from "@/utils/fetch"
 
 export const ViewAllLetters = async () => {
-    const { data, error } = await useFetch(`api/letters`)
+    const { data, error } = await serverFetchData({ endpoint: `api/letters` })
 
     if (error) {
         return <p>{error}</p>

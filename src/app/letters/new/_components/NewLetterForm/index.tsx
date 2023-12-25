@@ -7,6 +7,7 @@ import Select from "@/components/Select"
 import { useAvailableCountries } from "@/hooks/useAvailableCountries"
 import { useUserCountry } from "@/hooks/useUserCountry"
 import { usePost } from "@/hooks/usePost"
+import { useAvailableTags } from "@/hooks/useAvailableTags"
 
 type NewLetterFormData = {
     title: string
@@ -27,16 +28,17 @@ type NewLetterFormInitialData = Omit<
 
 const NewLetterForm = () => {
     const availableCountries = useAvailableCountries()
+    const availableTags = useAvailableTags()
     const { code: userCountryCode } = useUserCountry()
     const { asyncFunc: createNewLetter } = usePost({
         endpoint: "api/letters/",
     })
 
     const initialCountry = useMemo(() => {
-        const _country = availableCountries.find(
+        const _country = (availableCountries ?? []).find(
             country => country.code === userCountryCode
         )
-        return String(_country?.id) ?? ""
+        return _country?.id ? String(_country?.id) : ""
     }, [availableCountries, userCountryCode])
 
     const initialValues = useMemo<NewLetterFormInitialData>(
@@ -105,7 +107,10 @@ const NewLetterForm = () => {
                         // @ts-expect-error
                         onBlur={handleBlur}
                         defaultLabel={"No country? 👀"}
-                        options={[{ label: "Canada", value: "1" }]}
+                        options={(availableCountries ?? []).map(country => ({
+                            label: country.name,
+                            value: String(country.id),
+                        }))}
                     />
                     <ErrorMessage name="countryId" component="div" />
 
@@ -132,7 +137,10 @@ const NewLetterForm = () => {
                         // @ts-expect-error
                         onBlur={handleBlur}
                         defaultLabel={"No tag :'("}
-                        options={[{ label: "Test Tag", value: "1" }]}
+                        options={(availableTags ?? []).map(tag => ({
+                            label: tag.name,
+                            value: String(tag.id),
+                        }))}
                     />
                     <ErrorMessage name="tagId" component="div" />
 

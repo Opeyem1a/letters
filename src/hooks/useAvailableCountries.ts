@@ -1,12 +1,9 @@
 import { Country } from "@db/schema/types"
+import { useFetch } from "@/hooks/useFetch"
+import { Maybe } from "@/utils/types"
 
-export const useAvailableCountries = (): Country[] => {
-    // todo: fetch all countries from a new api that retrieves all countries we support
-    return [
-        {
-            code: "CAD",
-            id: 1,
-            name: "Canada",
-        },
-    ]
+export const useAvailableCountries = (): Maybe<Country[]> => {
+    const { data, loading, error } = useFetch<Country[]>(`api/countries`)
+    if (loading || error) return []
+    return data
 }
