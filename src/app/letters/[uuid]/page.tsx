@@ -1,8 +1,10 @@
 import { DetailedLetter } from "@db/schema/types"
-import { useFetch } from "@/hooks/useFetch"
+import { serverFetchData } from "@/utils/fetch"
 
 export const ViewLetter = async ({ params }: { params: { uuid: string } }) => {
-    const { data, error } = await useFetch(`api/letters/${params.uuid}`)
+    const { data, error } = await serverFetchData({
+        endpoint: `api/letters/${params.uuid}`,
+    })
 
     if (error) {
         return <p>{error}</p>
